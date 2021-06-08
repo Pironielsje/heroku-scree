@@ -188,4 +188,4 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
     sendLogChannel.send(editEmbed)
 })
 
-client.login(process.enc.TOKEN)
+client.login(process.env.TOKEN)
