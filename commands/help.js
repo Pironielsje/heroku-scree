@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { token } = require('../config.json');
 const db = require('quick.db')
 
 module.exports.run = async(client, message, args) => {
