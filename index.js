@@ -94,7 +94,7 @@ client.on('message', async(message) => {
     if(cooldown.has(message.author.id)) {
         message.reply(`You have to wait ${cooldown} seconds to do this command again`)
     }
-    if(!message.member.hasPermission("ADMINISTRATOR")) cooldown.add(message.author.id)
+    // if(!message.member.hasPermission("ADMINISTRATOR")) cooldown.add(message.author.id)
 
     setTimeout(() => {
         cooldown.delete(message.author.id)
