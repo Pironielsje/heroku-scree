@@ -82,5 +82,6 @@ module.exports.help = {
     name: "help",
     description: "Returns all commands.",
     aliases: ["h"],
-    category: "ℹ Information"
+    category: "ℹ Information",
+    cooldown: 10
 }
