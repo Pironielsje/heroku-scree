@@ -90,28 +90,6 @@ client.on('message', async(message) => {
     const command = args.shift().toLowerCase();
     const cmds = client.commands.get(command) || client.commands.get(client.aliases.get(command))
 
-    if(!coolDowns.has(getFile.help.name)){
-        coolDowns.set(getFile.help.name, new discord.Collection())
-    }
-
-    const currentTime = Date.now()
-    const time_stamps = coolDowns.get(getFile.help.name);
-    const cooldown_amount = (getFile.help.cooldown) * 1000;
-
-    if(time_stamps.has(message.author.id)){
-        const expTime = time_stamps.get(message.author.id) + cooldown_amount;
-
-        if(currentTime < expTime){
-            const timeLeft = (expTime - currentTime) / 1000;
-
-            return message.reply(`You still have ${timeLeft.toFixed(1)} cooldown on ${message.content}.`)
-        }
-    }
-
-    time_stamps.set(message.author.id, currentTime);
-    setTimeout(() => time_stamps.delete(message.author.id, cooldown_amount))
-
-
     var options = {
         active: activeSongs
     }
