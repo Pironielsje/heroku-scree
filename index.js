@@ -8,6 +8,9 @@ const { Player } = require('discord-player');
 client.commands = new discord.Collection()
 client.aliases = new discord.Collection()
 
+let cooldown = new Set()
+let cdseconds = 5;
+
 const activeSongs = new Map();
 
 fs.readdir('./commands/', (err, files) => {
@@ -87,6 +90,15 @@ client.on('message', async(message) => {
     const args = message.content.slice(prefix.length).trim().split(' ');
     const command = args.shift().toLowerCase();
     const cmds = client.commands.get(command) || client.commands.get(client.aliases.get(command))
+
+    if(cooldown.has(message.author.id)) {
+        message.reply(`You have to wait ${cooldown} seconds to do this command again`)
+    }
+    if(!message.member.hasPermission("ADMINISTRATOR")) cooldown.add(message.author.id)
+
+    setTimeout(() => {
+        cooldown.delete(message.author.id)
+    }, cdseconds * 1000)
 
     var options = {
         active: activeSongs
