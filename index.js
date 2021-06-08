@@ -59,22 +59,6 @@ client.on('message', async(message) => {
             if (message.channel.type === "dm") return
             if (message.author.bot) return
 
-            var swearWords = JSON.parse(fs.readFileSync("./data/swearwords.json"))
-
-            var msg = message.content.toLowerCase();
-
-            for (let i = 0; i < swearWords["swearwords"].length; i++) {
-
-                if (msg.includes(swearWords["swearwords"][i])) {
-
-                    message.delete();
-
-                    return message.reply("Don't swear.").then(msg => msg.delete({ timeout: 5000 }))
-
-                }
-
-            }
-
             var randomxp = Math.floor(Math.random() * 15) + 1;
             var xpToLevel = 75
             if (!db.get(`xp_${message.author.id}_${message.guild.id}`)) {
