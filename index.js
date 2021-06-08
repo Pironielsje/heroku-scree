@@ -12,8 +12,6 @@ client.aliases = new discord.Collection()
 const activeSongs = new Map();
 const coolDowns = new Map();
 
-var getFile = require(`./commands/${f}`)
-
 fs.readdir('./commands/', (err, files) => {
     if (err) console.log(err)
 
@@ -25,6 +23,8 @@ fs.readdir('./commands/', (err, files) => {
     }
 
     jsFiles.forEach((f, i) => {
+
+        var getFile = require(`./commands/${f}`)
 
         console.log(`Succesfully loaded ${f}!`)
 
@@ -110,7 +110,7 @@ client.on('message', async(message) => {
 
     time_stamps.set(message.author.id, currentTime);
     setTimeout(() => time_stamps.delete(message.author.id, cooldown_amount))
-    
+
 
     var options = {
         active: activeSongs
