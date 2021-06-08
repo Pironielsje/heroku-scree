@@ -4,13 +4,11 @@ const client = new discord.Client();
 const db = require('quick.db')
 
 const { Player } = require('discord-player');
-const { time } = require('console');
 
 client.commands = new discord.Collection()
 client.aliases = new discord.Collection()
 
 const activeSongs = new Map();
-const coolDowns = new Map();
 
 fs.readdir('./commands/', (err, files) => {
     if (err) console.log(err)
